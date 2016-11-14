@@ -88,7 +88,7 @@
   app.controller('newsController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
 
     // I'm using the same post type video, but you will need another custom post type for this one
-    $scope.yourAPI = 'http://dev.studio31.co/api/get_posts/?post_type=video'; 
+    $scope.yourAPI = 'http://www.tavata.net/api/get_posts/'; 
     $scope.items = [];
     $scope.totalPages = 0;
     $scope.currentPage = 1;
@@ -258,11 +258,11 @@
   app.controller('radioController', function($scope, $sce, ngAudio){
     
     $scope.radioHost = 'http://62.210.209.179'; // Replace this with your own radio stream URL
-    $scope.radioPort = '8093'; // Replace this with the port of your Radio Stream
+    $scope.radioPort = '8093/live'; // Replace this with the port of your Radio Stream
     $scope.lastFMKey = 'ab68e9a71c1bb15efaa9c706b646dee4';
     $scope.lastFM = 'http://ws.audioscrobbler.com/2.0/?method=track.search&format=json&limit=1&api_key='+$scope.lastFMKey+'&track=';
 
-    $scope.radioURL = $scope.radioHost+':'+$scope.radioPort+'/;';
+    $scope.radioURL = $scope.radioHost+':'+$scope.radioPort;
     $scope.buttonIcon = '<span class="ion-ios-play"></span>';
 
     $scope.radioOptions = {
@@ -272,7 +272,7 @@
 
     // Let's start the Shoutcast plugin to get the Song Name
     $.SHOUTcast({
-       host : '192.99.8.192', // Replace this with your own radio stream URL but remove the http
+       host : '62.210.209.179', // Replace this with your own radio stream URL but remove the http
        port : $scope.radioPort,
        interval : 40000, // Refresh interval in miliseconds is equal to 40 seconds.
        stream: 1, // Replace with your stream, default is 1.
