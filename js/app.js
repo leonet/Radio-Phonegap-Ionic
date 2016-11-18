@@ -88,7 +88,97 @@
   app.controller('newsController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
 
     // I'm using the same post type video, but you will need another custom post type for this one
-    $scope.yourAPI = 'http://www.tavata.net/api/get_posts/'; 
+    $scope.yourAPI = 'http://www.tavata.net/api/get_posts//*! 
+ * Roots v 2.0.0
+ * Follow me @adanarchila at Codecanyon.net
+ * URL: http://codecanyon.net/item/roots-phonegapcordova-multipurpose-hybrid-app/9525999
+ * Don't forget to rate Roots if you like it! :)
+ */
+
+// In this file we are goint to include all the Controllers our app it's going to need
+
+(function(){
+  'use strict';
+ 
+  var app = angular.module('app', ['onsen', 'angular-images-loaded', 'ngAudio']);
+
+  // Filter to convert HTML content to string by removing all HTML tags
+  app.filter('htmlToPlaintext', function() {
+      return function(text) {
+        return String(text).replace(/<[^>]+>/gm, '');
+      }
+    }
+  );
+
+  app.controller('networkController', function($scope){
+    
+    ons.ready(function(){
+      StatusBar.styleBlackOpaque();
+    });
+
+    // Check if is Offline
+    document.addEventListener("offline", function(){
+
+      offlineMessage.show();
+
+      /* 
+       * With this line of code you can hide the modal in 8 seconds but the user will be able to use your app
+       * If you want to block the use of the app till the user gets internet again, please delete this line.       
+       */
+
+      setTimeout('offlineMessage.hide()', 8000);  
+
+    }, false);
+
+    document.addEventListener("online", function(){
+      // If you remove the "setTimeout('offlineMessage.hide()', 8000);" you must remove the comment for the line above      
+      // offlineMessage.hide();
+    });
+
+  });
+
+  // This functions will help us save the JSON in the localStorage to read the website content offline
+
+  Storage.prototype.setObject = function(key, value) {
+      this.setItem(key, JSON.stringify(value));
+  }
+
+  Storage.prototype.getObject = function(key) {
+      var value = this.getItem(key);
+      return value && JSON.parse(value);
+  }
+
+  // This directive will allow us to cache all the images that have the img-cache attribute in the <img> tag
+  app.directive('imgCache', ['$document', function ($document) {
+    return {
+      link: function (scope, ele, attrs) {
+        var target = $(ele);
+
+        scope.$on('ImgCacheReady', function () {
+
+          ImgCache.isCached(attrs.src, function(path, success){
+            if(success){
+              ImgCache.useCachedFile(target);
+            } else {
+              ImgCache.cacheFile(attrs.src, function(){
+                ImgCache.useCachedFile(target);
+              });
+            }
+          });
+        }, false);
+
+      }
+    };
+  }]);    
+
+
+
+  // News Controller
+  // This controller gets all the posts from our WordPress site and inserts them into a variable called $scope.items
+  app.controller('newsController', [ '$http', '$scope', '$rootScope', function($http, $scope, $rootScope){
+
+    // I'm using the same post type video, but you will need another custom post type for this one
+    $scope.yourAPI = 'http://dev.studio31.co/api/get_posts/?post_type=video'; 
     $scope.items = [];
     $scope.totalPages = 0;
     $scope.currentPage = 1;
