@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="co.com.educacionaldia.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-   <name>Educación al día Radio</name>
-  <description>Equipo Sindical de Educadores Demócratas</description>
+   <name>Paisa Radio</name>
+  <description>Emisora virtual Paisa Radio! emitiendo desde Uramita Antioquia para el mundo !!!</description>
   <author href="http://leonetcomunicaciones.com" email="soporte@leonetcomunicaciones.com">LeoNetCo</author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -15,7 +15,7 @@
   
     <allow-intent href="http://62.210.209.179:*/*"/>
     
-    <allow-intent href="http://educacionaldia.com.co*"/>
+    <allow-intent href="http://paisaradio.com*"/>
     
 <!--  <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
