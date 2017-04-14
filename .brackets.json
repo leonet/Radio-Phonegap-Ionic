@@ -1,0 +1,6 @@
+{
+    "phonegapcodehints.detectedExclusions": [
+        "D:/proyectos/Radio-Phonegap-Ionic/js/plugins.js",
+        "D:/proyectos/EducacionAlDia/plugins/cordova-plugin-globalization/tests/tests.js"
+    ]
+}
